@@ -1,0 +1,2 @@
+char  *rev_print (char *str)
+{
