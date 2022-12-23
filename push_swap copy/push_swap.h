@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:54:35 by matanton          #+#    #+#             */
-/*   Updated: 2022/12/21 16:00:43 by matanton         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:21:57 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ long int	ft_psatoi(char *str);
 int			is_long(int argc, char **data);
 int			is_sorted(t_list **list);
 int			*ft_sort(int argc, char **data);
-void		put_index(int *array, t_list *list);
+void		put_index(int *array, t_list **list, int size_array);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:34:19 by matanton          #+#    #+#             */
-/*   Updated: 2022/12/21 17:14:43 by matanton         ###   ########.fr       */
+/*   Updated: 2022/12/23 15:21:39 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,17 @@ int	main(int argc, char **data)
 			if (is_sorted(&list))
 				write (1, "is sorted\n", 10);
 			array = ft_sort(argc, data);
-			put_index(array, list);
-			while (list)
+			int j = 0;
+			while (array[j])
 			{
-				printf("index= %i\n", list->index);
+				printf("p.%i: %i\n", j, array[j]);
+				j++;
+			}
+			put_index(array, &list, argc - 1);
+			while (list != NULL)
+			{
+				printf("index= %i\t", list->index);
+				printf("elem= %i\n", list->elem);
 				list = list->next;
 			}
 		}
