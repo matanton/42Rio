@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:36:08 by matanton          #+#    #+#             */
-/*   Updated: 2022/12/19 18:09:35 by matanton         ###   ########.fr       */
+/*   Updated: 2023/01/02 20:01:31 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,14 +103,14 @@ int	is_long(int argc, char **data)
 	return (0);
 }
 
-int	is_sorted(t_list **list)
+int	is_sorted(t_list list)
 {
-	while ((*list)->next != NULL)
+	while ((list).next != NULL)
 	{
-		if ((*list)->elem > (*list)->next->elem)
+		if ((list).elem > (list).next->elem)
 			return (0);
 		else
-			*list = (*list)->next;
+			list = *((list).next);
 	}
 	return (1);
 }

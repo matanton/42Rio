@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:34:19 by matanton          #+#    #+#             */
-/*   Updated: 2022/12/23 15:21:39 by matanton         ###   ########.fr       */
+/*   Updated: 2023/01/03 15:39:55 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int argc, char **data)
 	if (argc > 2)
 	{
 		t_list	*list;
+		t_list	*listb;
 		int		*array;
 
 		if (is_long(argc, data))
@@ -31,21 +32,26 @@ int	main(int argc, char **data)
 		{
 			//write (1, "OK\n", 3);
 			list = argto_stack(argc, data);
-			if (is_sorted(&list))
+			listb = argto_stack(argc, data);
+			if (is_sorted(*list))
 				write (1, "is sorted\n", 10);
 			array = ft_sort(argc, data);
-			int j = 0;
-			while (array[j])
-			{
-				printf("p.%i: %i\n", j, array[j]);
-				j++;
-			}
 			put_index(array, &list, argc - 1);
+			swap_a(&list);
+			ft_rotate(&list);
+			ft_push(&list, &listb);
+			//printf("elem= %i",list->elem);
 			while (list != NULL)
 			{
 				printf("index= %i\t", list->index);
 				printf("elem= %i\n", list->elem);
 				list = list->next;
+			}
+			while (listb != NULL)
+			{
+				printf("indexb= %i\t", listb->index);
+				printf("elemb= %i\n", listb->elem);
+				listb = listb->next;
 			}
 		}
 		else

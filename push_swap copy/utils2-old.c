@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:54:01 by matanton          #+#    #+#             */
-/*   Updated: 2023/01/02 20:49:21 by matanton         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:38:34 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,19 @@ void	put_index(int *array, t_list **list, int size_array)
 		{
 			if ((*list)->elem == array[i])
 			{
+				printf("list: %i; i: %i\n", (*list)->elem, i);
 				(*list)->index = i;
+				i++;
 				break ;
 			}
 			*list = (*list)->next;
+			if ((*list)->elem == 8)
+				break ;
+		//	i++;
+			//printf("2 list: %i; i: %i\n", (*list)->elem, i);
 		}
-		i++;
 	}
-	*list = tmp;	
+	write(1, "m", 1);	
 }
 
 /* comecei a fazer com a thatha mas nao terminei
