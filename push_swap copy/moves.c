@@ -6,74 +6,95 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 17:58:36 by matanton          #+#    #+#             */
-/*   Updated: 2023/01/03 15:39:19 by matanton         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:27:23 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	ft_swap(t_list **stack_one)
+int	ft_swap(t_list **stack_one)
 {
-	int	tmp;
-	int	tmp_index;
+	t_list	*head;
+	t_list	*next;
+	int		tmp_val;
+	int		tmp_index;
 
-	tmp = (*stack_one)->elem;
-	tmp_index = (*stack_one)->index;
-	(*stack_one)->elem = (*stack_one)->next->elem;
-	(*stack_one)->index = (*stack_one)->next->index;
-	(*stack_one)->next->elem = tmp;
-	(*stack_one)->next->index = tmp_index;
+	if (ft_lstsize(*stack_one) < 2)
+		return (-1);
+	head = *stack_one;
+	next = head->next;
+	if (!head && !next)
+		printf("Error occured while swapping!");
+	tmp_val = head->elem;
+	tmp_index = head->index;
+	head->elem = next->elem;
+	head->index = next->index;
+	next->elem = tmp_val;
+	next->index = tmp_index;
+	return (0);
 }
 
-void	ft_rotate(t_list **stack_one)
+int	ft_rotate(t_list **stack_one)
 {
-	t_list	*list;
-	t_list	*tmp;
+	t_list	*head;
+	t_list	*tail;
 
-	tmp = (*stack_one);
-	list = tmp->next;
-	
-	while ((*stack_one) != NULL)
+	if (ft_lstsize(*stack_one) < 2)
+		return (-1);
+	head = *stack_one;
+	tail = ft_lstlast(head);
+	*stack_one = head->next;
+	head->next = NULL;
+	tail->next = head;
+	return (0);
+}
+
+int	push(t_list **stack_to, t_list **stack_from)
+{
+	t_list	*tmp;
+	t_list	*head_to;
+	t_list	*head_from;
+
+	if (ft_lstsize(*stack_from) == 0)
+		return (-1);
+	head_to = *stack_to;
+	head_from = *stack_from;
+	tmp = head_from;
+	head_from = head_from->next;
+	*stack_from = head_from;
+	if (!head_to)
 	{
-		if ((*stack_one)->next == NULL)
-		{	
-			(*stack_one)->next = tmp;
-			tmp->next = NULL;
-		}	
-		(*stack_one) = (*stack_one)->next;
+		head_to = tmp;
+		head_to->next = NULL;
+		*stack_to = head_to;
 	}
-	(*stack_one) = list;
+	else
+	{
+		tmp->next = head_to;
+		*stack_to = tmp;
+	}
+	return (0);
 }
 
-void	ft_push(t_list **stack_one, t_list **stack_two)
+int	ft_reverserotate(t_list **stack_a)
 {
-	t_list	*tmp;
-//	t_list	*tmp2;
+	t_list	*head;
+	t_list	*tail;
 
-	if ((*stack_two) == NULL)
-		return ;
-	
-	tmp = (*stack_one);
-	(*stack_one) = tmp->next;
-	tmp->next = (*stack_two);
-	(*stack_two) = tmp;
-	
-/*	tmp2 = (*stack_one)->next;
-
-	(*stack_one)->next = (*stack_two);
-	(*stack_two) = (*stack_one);
-	(*stack_one) = tmp->next;
-*/
-}
-
-void swap_a(t_list **stack_a)
-{
-	ft_swap(stack_a);
-	write(1, "sa\n", 3);
-}
-
-void swap_b(t_list **stack_b)
-{
-	ft_swap(stack_b);
-	write(1, "sb\n", 3);
+	if (ft_lstsize(*stack_a) < 2)
+		return (-1);
+	head = *stack_a;
+	tail = ft_lstlast(head);
+	while (head)
+	{
+		if (head->next->next == NULL)
+		{
+			head->next = NULL;
+			break ;
+		}
+		head = head->next;
+	}
+	tail->next = *stack_a;
+	*stack_a = tail;
+	return (0);
 }

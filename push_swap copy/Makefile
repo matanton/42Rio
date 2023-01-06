@@ -6,11 +6,11 @@
 #    By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/12 15:45:42 by matanton          #+#    #+#              #
-#    Updated: 2023/01/02 18:33:44 by matanton         ###   ########.fr        #
+#    Updated: 2023/01/05 14:48:26 by matanton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS = validation.c push_swap.c utils.c utils2.c ft_lstnew.c moves.c
+SRCS = validation.c push_swap.c utils.c utils2.c ft_lstnew.c moves.c operations.c ft_sort.c
 
 OBJS = ${SRCS}
 

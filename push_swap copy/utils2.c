@@ -6,33 +6,39 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:54:01 by matanton          #+#    #+#             */
-/*   Updated: 2023/01/02 20:49:21 by matanton         ###   ########.fr       */
+/*   Updated: 2023/01/06 18:33:19 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int *ft_sort(int argc, char **data)
+t_list	*argto_stack(int argc, char **data)
 {
-	int *list;
+	t_list	*list;
+	int		i;
+
+	i = 0;
+	list = NULL;
+	while (++i < argc)
+		ft_lstadd_back(&list, ft_lstnew(ft_psatoi(data[i])));
+	return (list);
+}
+
+int	*ft_sort(int argc, char **data)
+{
+	int	*list;
 	int	temp;
 	int	i;
 	int	j;
 
-	i = 0;
-	j = 1;
-		
+	i = -1;
+	j = 0;
 	list = malloc(sizeof(argc - 1));
-	while (j < argc)
-	{
-		list[i] = ft_atoi(data[j]);
-		i++;
-		j++;
-	}
-
+	while (++j < argc)
+		list[++i] = ft_atoi(data[j]);
 	i = 0;
 	while (i < argc - 2)
-	{	
+	{
 		if (list[i + 1] < list[i])
 		{
 			temp = list[i];
@@ -43,13 +49,12 @@ int *ft_sort(int argc, char **data)
 		else
 			i++;
 	}
-	i = 0;
 	return (list);
 }
 
 void	put_index(int *array, t_list **list, int size_array)
 {
-	int	i;
+	int		i;
 	t_list	*tmp;
 
 	i = 0;
@@ -70,30 +75,31 @@ void	put_index(int *array, t_list **list, int size_array)
 		}
 		i++;
 	}
-	*list = tmp;	
+	*list = tmp;
 }
 
-/* comecei a fazer com a thatha mas nao terminei
-void	ft_sortbig(t_list **list)
+int	ft_error(void)
 {
-	int	i;
-	int	bit;
-	int	size;
+	write(1, "Error\n", 6);
+	return (1);
+}
 
-	i = 0;
-	bit = 0;
-	size = 0;
+int	ft_lastbit(t_list **stack)
+{
+	t_list	*head;
+	int		max;
+	int		max_bits;
 
-	while ((*list)->next != NULL)
-		size++;
-		*list = (*list)->next;
-	while (!is_sorted(list))
+	head = *stack;
+	max = head->index;
+	max_bits = 0;
+	while (head)
 	{
-		while (i < size)
-		{
-			if ((*list)->index << bit & 1)
-				ra
-			else
-				pb
-*/
-
+		if (head->index > max)
+			max = head->index;
+		head = head->next;
+	}
+	while ((max >> max_bits) != 0)
+		max_bits++;
+	return (max_bits);
+}

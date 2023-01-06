@@ -6,15 +6,15 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 18:13:35 by matanton          #+#    #+#             */
-/*   Updated: 2022/12/19 15:02:14 by matanton         ###   ########.fr       */
+/*   Updated: 2023/01/05 14:09:30 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list *ft_lstnew(int elem)
+t_list	*ft_lstnew(int elem)
 {
-	t_list *node;
+	t_list	*node;
 
 	node = malloc(sizeof(t_list));
 	if (node != NULL)
@@ -25,9 +25,9 @@ t_list *ft_lstnew(int elem)
 	return (node);
 }
 
-t_list *ft_lstlast(t_list *list)
+t_list	*ft_lstlast(t_list *list)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = list;
 	if (list != NULL)
@@ -40,11 +40,11 @@ t_list *ft_lstlast(t_list *list)
 		return (NULL);
 }
 
-void ft_lstadd_back(t_list **list, t_list *new)
+void	ft_lstadd_back(t_list **list, t_list *new)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
-	if (new  == NULL)
+	if (new == NULL)
 		return ;
 	if (*list != NULL)
 	{
@@ -55,3 +55,17 @@ void ft_lstadd_back(t_list **list, t_list *new)
 		*list = new;
 }
 
+int	ft_lstsize(t_list *head)
+{
+	size_t	i;
+	t_list	*tmp;
+
+	tmp = head;
+	i = 0;
+	while (tmp)
+	{
+		tmp = tmp->next;
+		i++;
+	}
+	return (i);
+}
