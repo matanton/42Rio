@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 15:54:35 by matanton          #+#    #+#             */
-/*   Updated: 2023/01/06 15:36:24 by matanton         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:49:42 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ typedef struct s_list{
 	struct s_list	*next;
 }t_list;
 
-int			is_repeated(int argc, char **data);
-int			is_number(int argc, char **data);
+int			is_rep(int argc, char **data);
+int			is_num(int argc, char **data);
 t_list		*ft_lstnew(int elem);
 t_list		*ft_lstlast(t_list *list);
 void		ft_lstadd_back(t_list **list, t_list *new);

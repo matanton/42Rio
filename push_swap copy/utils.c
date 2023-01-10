@@ -1,55 +1,105 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   utils2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/19 14:43:43 by matanton          #+#    #+#             */
-/*   Updated: 2023/01/06 17:26:42 by matanton         ###   ########.fr       */
+/*   Created: 2022/12/21 13:54:01 by matanton          #+#    #+#             */
+/*   Updated: 2023/01/09 17:38:25 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	rra(t_list **stack_a)
+t_list	*argto_stack(int argc, char **data)
 {
-	if (ft_reverserotate(stack_a) == -1)
-		return (-1);
-	write (1, "rra\n", 4);
-	return (0);
+	t_list	*list;
+	int		i;
+
+	i = 0;
+	list = NULL;
+	while (++i < argc)
+		ft_lstadd_back(&list, ft_lstnew(ft_psatoi(data[i])));
+	return (list);
 }
 
-int	rrb(t_list **stack_b)
+int	*ft_sort(int argc, char **data)
 {
-	if (ft_reverserotate(stack_b) == -1)
-		return (-1);
-	write (1, "rrb\n", 4);
-	return (0);
+	int	*list;
+	int	temp;
+	int	i;
+	int	j;
+
+	i = -1;
+	j = 0;
+	list = malloc(sizeof(int) * (argc - 1));
+	while (++j < argc)
+		list[++i] = ft_atoi(data[j]);
+	i = 0;
+	while (i < argc - 2)
+	{
+		if (list[i + 1] < list[i])
+		{
+			temp = list[i];
+			list[i] = list[i + 1];
+			list[i + 1] = temp;
+			i = 0;
+		}
+		else
+			i++;
+	}
+	return (list);
 }
 
-int	rrr(t_list **stack_a, t_list **stack_b)
+void	put_index(int *array, t_list **list, int size_array)
 {
-	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
-		return (-1);
-	ft_reverserotate(stack_a);
-	ft_reverserotate(stack_b);
-	write (1, "rrr\n", 4);
-	return (0);
+	int		i;
+	t_list	*tmp;
+
+	i = 0;
+	tmp = *list;
+	if (!list)
+		return ;
+	while (i < size_array)
+	{
+		*list = tmp;
+		while (*list != NULL)
+		{
+			if ((*list)->elem == array[i])
+			{
+				(*list)->index = i;
+				break ;
+			}
+			*list = (*list)->next;
+		}
+		i++;
+	}
+	*list = tmp;
 }
 
-int	pa(t_list **stack_a, t_list **stack_b)
+int	ft_error(void)
 {
-	if (push(stack_a, stack_b) == -1)
-		return (-1);
-	write (1, "pa\n", 3);
-	return (0);
+	write(2, "Error\n", 6);
+	return (1);
 }
 
-int	pb(t_list **stack_a, t_list **stack_b)
+int	ft_lastbit(t_list **stack)
 {
-	if (push(stack_b, stack_a) == -1)
-		return (-1);
-	write (1, "pb\n", 3);
-	return (0);
+	t_list	*head;
+	int		max;
+	int		max_bits;
+
+	head = *stack;
+	max = head->index;
+	max_bits = 0;
+	while (head)
+	{
+		if (head->index > max)
+			max = head->index;
+		head = head->next;
+	}
+	while ((max >> max_bits) != 0)
+		max_bits++;
+	return (max_bits);
 }

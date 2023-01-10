@@ -6,13 +6,13 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:36:08 by matanton          #+#    #+#             */
-/*   Updated: 2023/01/06 17:06:08 by matanton         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:17:07 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	is_repeated(int argc, char **data)
+int	is_rep(int argc, char **data)
 {
 	int	i;
 	int	j;
@@ -24,7 +24,7 @@ int	is_repeated(int argc, char **data)
 		while (i + j <= argc - 2)
 		{
 			j++;
-			if (ft_strncmp(data[i], data[i + j], 10) == 0)
+			if (ft_psatoi(data[i]) == ft_psatoi(data[i + j]))
 				return (1);
 		}
 		j = 0;
@@ -33,7 +33,7 @@ int	is_repeated(int argc, char **data)
 	return (0);
 }
 
-int	is_number(int argc, char **data)
+int	is_num(int argc, char **data)
 {
 	int	i;
 	int	j;

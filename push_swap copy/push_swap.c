@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 19:34:19 by matanton          #+#    #+#             */
-/*   Updated: 2023/01/06 17:24:44 by matanton         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:51:32 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,28 +35,47 @@ void	push_swap(t_list **stack_a, t_list **stack_b)
 		ft_sortbig(stack_a, stack_b, max_bits, size);
 }
 
+void	free_list(t_list *list)
+{
+	t_list	*tmp;
+
+	tmp = list;
+	while (list->next != NULL)
+	{
+		list = list->next;
+		free (tmp);
+		tmp = NULL;
+		tmp = list;
+	}
+	free (list);
+	list = NULL;
+}
+
 int	main(int argc, char **data)
 {
 	t_list	*list;
 	t_list	*listb;
 	int		*array;
 
+	list = NULL;
+	listb = NULL;
 	if (argc > 1)
 	{
-		if (is_long(argc, data))
-			return (ft_error());
-		if (is_number(argc, data) && !is_repeated(argc, data))
+		if (is_num(argc, data) && !is_rep(argc, data) && !is_long(argc, data))
 		{
 			list = argto_stack(argc, data);
 			if (is_sorted(list))
+			{
+				free_list (list);
 				return (1);
+			}
 			array = ft_sort(argc, data);
 			put_index (array, &list, argc - 1);
+			free (array);
 			push_swap (&list, &listb);
+			free_list (list);
 		}
 		else
 			return (ft_error());
 	}
-	else
-		return (1);
 }
