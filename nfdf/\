@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 13:57:09 by matanton          #+#    #+#             */
-/*   Updated: 2023/02/10 20:30:41 by matanton         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:41:20 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,9 @@ void	get_x_y(int fd, t_data *data)
 {
 	char	*line;
 	char	**string;
-	int		i;
 
-	i = 0;
 	data->x = 0;
+	line = NULL;
 	line = get_next_line(fd);
 	data->y = 1;
 	string = ft_split(line, 32);
@@ -44,12 +43,8 @@ void	get_x_y(int fd, t_data *data)
 			(data->y)++;
 		free(line);
 	}
-	while (string[i] != NULL)
-	{
-		free(string[i]);
-		i++;
-	}
 	free (string);
+//	free (line);
 }
 
 void	draw_line(t_iso p0, t_iso p1, t_data *data)

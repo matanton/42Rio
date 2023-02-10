@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:08:30 by matanton          #+#    #+#             */
-/*   Updated: 2023/02/08 11:43:16 by matanton         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:55:28 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,9 @@ int	main(int argc, char **argv)
 		init_mlx(&data);
 		array = map(fd, data);
 		screen = get_screen(array, data);
-	/*	int	i = 0;
-		while (i < (data.x*data.y))
-		{
-			printf("x: %d, y: %d", screen[i].sx, screen[i].sy);
-			printf("\n");
-			i++;
-		}*/
 		correct_values(screen, data);
 		fill(screen, data);
 		f_image(data);
 	}
 	return (0);
 }
-
-

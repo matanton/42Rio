@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 17:16:58 by matanton          #+#    #+#             */
-/*   Updated: 2023/02/08 11:52:33 by matanton         ###   ########.fr       */
+/*   Updated: 2023/02/10 19:08:04 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	**map(int fd, t_data data)
 	char	**string;
 	int		**map;
 	int		l;
-	int 	c;
+	int		c;
 
 	l = 0;
 	map = malloc((sizeof(int *) * data.y) + 1);
@@ -37,31 +37,19 @@ int	**map(int fd, t_data data)
 		}
 		l++;
 	}
-	map[l+1] = NULL;
+	map[l + 1] = NULL;
 	return (map);
 }
 
 t_iso	*get_screen(int **array, t_data data)
 {
-	// 	ang = 150
-	// 	rot = 270
-	//  a - 120 = 30 (z)
 	t_iso	*map;
-	double	cos_ang = cos(0.3);
-	double	sen_ang = sin(0.3);
-	double	cos_rot = cos(2.3944);
-	double	sen_rot = sin(2.3944);
-	double	cos_a = cos(-1.7944);
-	double	sen_a = sin(-1.7944);
-	int 	put_x = 0;
-	int		put_y = 0;
-	double		screen_x = 0;
-	double		screen_y = 0;
-	int			i = 0;
-	//int		screen_xd = 0;
-	//int		screen_yd = 0;
+	int		put_x;
+	int		put_y;
+	int		i;
 
-
+	put_y = 0;
+	i = 0;
 	map = malloc(sizeof(t_iso *) * data.x * data.y);
 	if (!map)
 		return (NULL);
@@ -70,12 +58,10 @@ t_iso	*get_screen(int **array, t_data data)
 		put_x = 0;
 		while (put_x < data.x)
 		{
-			//screen_x = put_x;
-			//screen_y = put_y;
-			screen_x = (put_x * cos_ang) + (put_y * cos_rot) + (array[put_y][put_x] * cos_a);
-			screen_y = (put_x * sen_ang) + (put_y * sen_rot) + (array[put_y][put_x] * sen_a);
-			map[i].sx = round(screen_x * 2);
-			map[i].sy = round(screen_y * 2);
+			map[i].sx = round (((put_x * cos(0.3)) + (put_y * cos(2.3944)) \
+						+ (array[put_y][put_x] * cos(-1.7944))) * 10);
+			map[i].sy = round (((put_x * sin(0.3)) + (put_y * sin(2.3944)) \
+						+ (array[put_y][put_x] * sin(-1.7944))) * 10);
 			put_x++;
 			i++;
 		}
@@ -84,45 +70,52 @@ t_iso	*get_screen(int **array, t_data data)
 	return (map);
 }
 
-void	correct_values(t_iso *screen, t_data data)
+static void	get_min(t_iso *screen, t_data *data)
 {
-	int	i = -1;
-	int minx = screen[0].sx;
-	int miny = screen[0].sy;
-	while (i++ < data.x * data.y - 1)
+	int	minx;
+	int	miny;
+	int	i;
+
+	i = -1;
+	minx = screen[0].sx;
+	miny = screen[0].sy;
+	while (i++ < (*data).x * (*data).y - 1)
 	{
 		if (minx > screen[i].sx)
 			minx = screen[i].sx;
 		if (miny > screen[i].sy)
 			miny = screen[i].sy;
 	}
+	(*data).minx = minx;
+	(*data).miny = miny;
+}
+
+void	correct_values(t_iso *screen, t_data data)
+{
+	int	i;
+
 	i = -1;
-	if (minx < 0)
+	get_min(screen, &data);
+	if (data.minx < 0)
 	{
-		minx = minx * -1;
+		data.minx = data.minx * -1;
 		while (i++ < data.x * data.y - 1)
-			screen[i].sx += minx;
+			screen[i].sx += data.minx;
 	}
 	i = -1;
-	if (miny < 0)
+	if (data.miny < 0)
 	{
-		miny = miny * -1;
+		data.miny = data.miny * -1;
 		while (i++ < data.x * data.y - 1)
-			screen[i].sy += miny;
+			screen[i].sy += data.miny;
 	}
-	printf("\n");
-	i = 0;
-	while (i++ < data.x * data.y - 1)
-		printf("x: %i, y: %i", screen[i].sx, screen[i].sy);
 }
 
 void	fill(t_iso *screen, t_data data)
 {
 	int	x;
-	//int	y;
 
 	x = 0;
-	//y = 0;
 	while (x < data.x * data.y - 1)
 	{
 		if ((x + 1) % data.x != 0)

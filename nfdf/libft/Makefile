@@ -6,7 +6,7 @@
 #    By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/11 19:07:02 by matanton          #+#    #+#              #
-#    Updated: 2023/01/26 15:29:50 by matanton         ###   ########.fr        #
+#    Updated: 2023/02/10 18:01:13 by matanton         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ AR		= ar rcs
 
 CC		= cc
 
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g
 
 RM		= rm -f
 
