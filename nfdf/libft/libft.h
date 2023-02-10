@@ -6,15 +6,16 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/06 15:21:28 by matanton          #+#    #+#             */
-/*   Updated: 2023/01/26 15:28:49 by matanton         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:06:51 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE 42
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# endif
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -50,7 +51,7 @@ void	*ft_memchr(const void *s, int c, size_t n);
 char	*ft_strtrim(char const *s1, char const *set);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
-char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strjoin(char *s1, char *s2);
 char	**ft_split(char const *s, char c);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
@@ -65,7 +66,6 @@ int		count_hexa(unsigned long i);
 int		ft_hexa(unsigned int i);
 int		ft_hexa_up(unsigned int i);
 int		ft_putptr(unsigned long i);
-char    *get_next_line(int fd);
+char	*get_next_line(int fd);
 
-#endif
 #endif

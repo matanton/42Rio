@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/15 19:38:11 by matanton          #+#    #+#             */
-/*   Updated: 2022/06/29 13:24:28 by matanton         ###   ########.fr       */
+/*   Updated: 2023/02/10 20:17:22 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static size_t	ft_counter(char const *str, char c)
 	words = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] != c && (str[i - 1] == c || i == 0))
+		if (str[i] != c && (i == 0 || str[i - 1] == c))
 			words++;
 		i++;
 	}
@@ -47,10 +47,13 @@ static char	*ft_copy(char const *s, char c)
 	i = 0;
 	count = 0;
 	while (s[count] != '\0' && s[count] != c)
-	count++;
+		count++;
 	copy = malloc(sizeof(char) * (count + 1));
 	if (!copy)
+	{
+		free (copy);
 		return (NULL);
+	}
 	while (i < count)
 	{
 		copy[i] = s[i];

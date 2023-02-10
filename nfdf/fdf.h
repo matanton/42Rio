@@ -6,29 +6,29 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/06 14:02:04 by matanton          #+#    #+#             */
-/*   Updated: 2023/02/08 11:20:13 by matanton         ###   ########.fr       */
+/*   Updated: 2023/02/10 18:56:09 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 
-#include "libft/libft.h"
-#include "minilibx/mlx.h"
-#include <unistd.h>
-#include <stdlib.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <math.h>
+# include "libft/libft.h"
+# include "minilibx/mlx.h"
+# include <unistd.h>
+# include <stdlib.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <math.h>
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*mlx_img;
 	char	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;
-} t_img;
+}	t_img;
 
 typedef struct s_data
 {
@@ -36,14 +36,16 @@ typedef struct s_data
 	void	*win_ptr;
 	int		x;
 	int		y;
+	int		minx;
+	int		miny;
 	t_img	img;
-} t_data;
+}	t_data;
 
-typedef struct	s_iso
+typedef struct s_iso
 {
 	int	sx;
 	int	sy;
-} t_iso;
+}	t_iso;
 
 int		init_mlx(t_data *data);
 void	f_image(t_data data);
