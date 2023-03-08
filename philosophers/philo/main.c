@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:59:36 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/08 19:27:46 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:13:51 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,4 +21,6 @@ int	main(int argc, char **argv)
 		return (1);
 	philo = parse_data(&general);
 	create_philo(philo);
+	free(philo->general->forks);
+	free(philo);
 }

@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:33:28 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/08 14:28:57 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/08 20:14:01 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,8 @@ long int	time_ms(void)
 	gettimeofday(&time, NULL);
 	return(time.tv_sec * 1000 + time.tv_usec / 1000);
 }
+
+/*void	philo_free(t_philo philo)
+{
+	free(philo->general->forks);
+	free(philo)*/
