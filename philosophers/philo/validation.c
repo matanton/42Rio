@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:59:01 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/08 13:29:22 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:29:46 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,16 @@ int	arg_check(t_general *general, int argc, char **argv)
 		{
 			n = ft_latoi(argv[i]);
 			if (!is_num(argv[i]) || (n > 2147483647) || (n < -2147483648))
-				return (1);
+				return (0);
 			i++;
 		}
-		if(arg_philo(general, argc, argv) == 1)
+		if (arg_philo(general, argc, argv) == 1)
 			return (1);
 	}
 	else
-		printf("./philo number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
+		printf("./philo number_of_philosophers time_to_die time_to_eat \
+				time_to_sleep [number_of_times_each_philosopher_must_eat] \
+				\n");
 	return (0);
 }
 

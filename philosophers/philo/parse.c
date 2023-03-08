@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:29:36 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/08 14:38:47 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:39:45 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ t_philo	*parse_data(t_general *general)
 		philo[i].last_eaten = 0;
 		philo[i].times_eaten = 0;
 		philo[i].general = general;
-		philo[i].status = 0;
+		philo[i].status = 1;
 		pthread_mutex_init(&general->forks[i], NULL);
 		/*printf("garfo esquerdo: %d\n", philo[i].l_fork);
 		printf("filosofo: %d\n", philo[i].philo_id);

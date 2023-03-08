@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:31:13 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/08 18:59:18 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/08 19:43:33 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	*dinner(void *param)
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	if (philo->general->n_philo % 2 == 0)
+	if (philo->philo_id % 2 == 0)
 		usleep(1000);
 	while(philo->general->is_dead != 1)
 	{
