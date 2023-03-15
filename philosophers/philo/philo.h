@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:57:49 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/08 13:39:59 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:30:37 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ t_philo		*parse_data(t_general *general);
 long int	time_ms(void);
 void	ft_sleep(t_philo *philo, int time);
 void	print_status(t_philo *philo, int status);
+void	one_philo(t_philo *philo);
+
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:31:13 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/08 19:43:33 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:30:10 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ void	*dinner(void *param)
 	t_philo	*philo;
 
 	philo = (t_philo *)param;
-	if (philo->philo_id % 2 == 0)
-		usleep(1000);
+	one_philo(philo);
 	while(philo->general->is_dead != 1)
 	{
 		if(philo->status == 0 && philo->general->is_dead == 0)
@@ -120,4 +119,17 @@ int	check_all(t_philo *philo)
 	return (1);
 }
 
-
+void	one_philo(t_philo *philo)
+{
+	if (philo->general->n_philo == 1)
+	{
+		print_status(philo, 3);
+		ft_sleep(philo, philo->general->time_die);
+		printf("%d %d died\n",
+				   (int)(time_ms() - philo->general->initial_time), philo->philo_id);
+		philo->general->is_dead = 1;
+		return;
+	}
+	if (philo->philo_id % 2 == 0)
+		usleep(1000);
+}
