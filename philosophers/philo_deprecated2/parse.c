@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:29:36 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/15 19:46:41 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:18:04 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,16 @@ void	create_philo(t_philo *philo)
 	pthread_t	*pd;
 	pthread_t	wait;
 
-	i = 0;
+	i = -1;
 	philo[0].general->initial_time = time_ms();
 	pd = malloc(sizeof(pthread_t) * philo[0].general->n_philo);
+	while (i++ < philo[0].general->n_philo)
+		philo[i].philo_id = i + 1;
+	i = 0;
 	while (i < philo[0].general->n_philo)
 	{
 		if(pthread_create(&pd[i], NULL, &dinner, (void*)(philo + i)))
 			exit(1);
-		philo[i].philo_id = i + 1;
 		i++;
 	}
 	pthread_create(&wait, NULL, &dinner_check, (void*)(philo));
@@ -71,11 +73,9 @@ void	create_philo(t_philo *philo)
 t_philo	*parse_data(t_general *general)
 {
 	int	i;
-	long int init;
 	t_philo	*philo;
 
 	i = 0;
-	init = time_ms();
 	philo = malloc(sizeof(t_philo) * general->n_philo);
 	general->forks = malloc(sizeof(pthread_mutex_t) * general->n_philo);
 	while (i < general->n_philo)
@@ -83,12 +83,13 @@ t_philo	*parse_data(t_general *general)
 		philo[i].philo_id = i + 1;
 		philo[i].l_fork = i;
 		philo[i].r_fork = (i + 1) % general->n_philo;
-		philo[i].last_eaten = init;
+		philo[i].last_eaten = 0;
 		philo[i].times_eaten = 0;
 		philo[i].general = general;
 		philo[i].status = 1;
 		pthread_mutex_init(&general->forks[i], NULL);
 		i++;
 	}
+//	create_mutex(philo[0]);
 	return (philo);
 }

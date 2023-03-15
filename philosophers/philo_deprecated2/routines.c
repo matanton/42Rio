@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:31:13 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/15 20:03:43 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:20:13 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ void	*dinner(void *param)
 			print_status(philo, 0);
 			philo->status = 1;
 		}
-		if(philo->general->is_limit_eat && philo->times_eaten >= \
+		/*if(philo->general->is_limit_eat && philo->times_eaten >= \
 				philo->general->times_to_eat)
-			return (NULL);
+			return (NULL);*/
 		if(philo->status == 1 && philo->general->is_dead == 0)
 			eating(philo);
 		if(philo->status == 2 && philo->general->is_dead == 0)
@@ -44,12 +44,12 @@ void	eating(t_philo *philo)
 {
 	pthread_mutex_lock(&philo->general->forks[philo->l_fork]);
 	print_status(philo, 3);
-	if(philo->general->n_philo == 1)
+	/*if(philo->general->n_philo == 1)
 	{
 		ft_sleep(philo, philo->general->time_die);
 		pthread_mutex_unlock(&philo->general->forks[philo->l_fork]);
 		return;
-	}
+	}*/
 	if(philo->general->is_dead == 1)
 	{
 		pthread_mutex_unlock(&philo->general->forks[philo->l_fork]);
@@ -76,20 +76,22 @@ void	*dinner_check(void *param)
 {
 	t_philo	*philo;
 	int		i;
-	
+
 	philo = (t_philo *)param;
 	i = 0;
-	usleep(100);
-	while(philo->general->is_dead != 1)
+	while(philo->general->is_dead != 1 && i < philo->general->n_philo)
 	{
-		if((time_ms() - philo[i].last_eaten) > (philo[0].general->time_die))
+		if((time_ms() - philo->general->initial_time - philo[i].last_eaten) > (philo[i].general->time_die))
 		{
-			printf("%d %d is dead\n",
-				   (int)(time_ms() - philo->general->initial_time), philo->philo_id);
+			printf("%d %d died\n",
+				   (int)(time_ms() - philo->general->initial_time), philo[i].philo_id);
 			philo->general->is_dead = 1;
+			break;
 		}
 		if(check_all(philo))
+		{
 			philo->general->is_dead = 1;
+		}
 		i = (i + 1) % philo->general->n_philo;
 	}
 	return (NULL);

@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/06 10:57:49 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/15 19:49:21 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/15 16:07:25 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ typedef struct	s_general
 	long int	initial_time;
 	int			is_dead;
 	pthread_mutex_t	*forks;
+	pthread_mutex_t	doctor;
+	pthread_mutex_t print;
 } t_general;
 
 typedef	struct	s_philo
@@ -58,5 +60,8 @@ long int	time_ms(void);
 void	ft_sleep(t_philo *philo, int time);
 void	print_status(t_philo *philo, int status);
 void	one_philo(t_philo *philo);
+void	create_mutex(t_philo philo);
+void	destroy_mutex(t_philo philo);
+
 
 #endif
