@@ -6,11 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:31:13 by matanton          #+#    #+#             */
-<<<<<<< HEAD
 /*   Updated: 2023/03/15 20:03:43 by matanton         ###   ########.fr       */
-=======
-/*   Updated: 2023/03/15 16:30:10 by matanton         ###   ########.fr       */
->>>>>>> dd862f8d8bdd0eb418b53324724dc718439ea895
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +125,4 @@ void	one_philo(t_philo *philo)
 	}
 	if (philo->philo_id % 2 == 0)
 		usleep(1000);
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> dd862f8d8bdd0eb418b53324724dc718439ea895
