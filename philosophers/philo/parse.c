@@ -6,7 +6,7 @@
 /*   By: matanton <matanton@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 13:29:36 by matanton          #+#    #+#             */
-/*   Updated: 2023/03/15 19:46:41 by matanton         ###   ########.fr       */
+/*   Updated: 2023/03/15 20:25:38 by matanton         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int	arg_philo(t_general *general, int argc, char **argv)
 		general->time_eat = ft_latoi(argv[3]);
 		general->time_sleep = ft_latoi(argv[4]);
 		general->is_limit_eat = 0;
+		general->initial_time = 0;
+		general->is_dead = 0;
 		if (argc == 6)
 		{
 			general->is_limit_eat = 1;
